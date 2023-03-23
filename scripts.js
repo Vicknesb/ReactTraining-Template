@@ -29,6 +29,18 @@ const userFormSubmitBtn = document.querySelector("#btnUserNewSubmit");
 const userFormReset = document.querySelector("#btnReset");
 const btnSearchClear = document.querySelector("#btnSearchClear");
 const btnUserFormClose = document.querySelector("#btnUserFormClose");
+
+const userName = document.querySelector("#txtUsername");
+const firstName = document.querySelector("#txtFirstname");
+const middleName = document.querySelector("#txtMiddletname");
+const lastName = document.querySelector("#txtLastname");
+const mailID = document.querySelector("#txtMailid");
+const selectProject = document.querySelector("#selectProject");
+const gender = document.getElementsByName("genderRadioBtn");
+
+const unameFilter = document.querySelector("#txtUserNameFilter");
+const emailFilter = document.querySelector("#txtEmailFilter");
+const projectFilter = document.querySelector("#selectProjectFilter");
  
 function Init(){		
 	showUserList();
@@ -103,10 +115,6 @@ var projetSelect = document.querySelector(`#${element}`);
 function userSearchFilterEvent(uname, email, project){
 	tempFilterTableData = [];
 
-	let unameFilter = document.querySelector("#txtUserNameFilter");
-	let emailFilter = document.querySelector("#txtEmailFilter");
-	let projectFilter = document.querySelector("#selectProjectFilter");
-
 	const selectedFilters = 
 	{
 	   uName: unameFilter.value,
@@ -150,12 +158,12 @@ return tempFilterTableData;
 }
 
 function resetUserForm(){
-	document.querySelector("#txtUsername").value = "";
-	document.querySelector("#txtFirstname").value = "";
-	document.querySelector("#txtMiddletname").value = "";
-	document.querySelector("#txtLastname").value = "";
-	document.querySelector("#txtMailid").value = "";
-	document.querySelector("#selectProject").value = "";
+	userName.value = "";
+	firstName.value = "";
+	middleName.value = "";
+	lastName.value = "";
+	mailID.value = "";
+	selectProject.value = "";
 	document.querySelector('#btnMaleRadio').checked = true;	
 	document.querySelector('#switchIsactive').checked = false;	
 }
@@ -180,9 +188,9 @@ function btnCreateUserClickEvent(){
 
 function btnSearchClearEvent()
 {	
-	document.querySelector("#txtUserNameFilter").value = "";
-	document.querySelector("#txtEmailFilter").value = "";
-	document.querySelector("#selectProjectFilter").value = "";
+	unameFilter.value = "";
+	emailFilter.value = "";
+	projectFilter.value = "";
 	tableData = tableDataCopy;
 	loadUserTableData();	
 }
@@ -197,14 +205,6 @@ function userFormResetEvent () {
 
 function userFormSubmitBtnClickEvent () {
 	
-	const userName = document.querySelector("#txtUsername");
-	const firstName = document.querySelector("#txtFirstname");
-	const middleName = document.querySelector("#txtMiddletname");
-	const lastName = document.querySelector("#txtLastname");
-	const mailID = document.querySelector("#txtMailid");
-	const selectProject = document.querySelector("#selectProject");
-	const gender = document.getElementsByName("genderRadioBtn");
-
 	let userNameVal = userName.value;
 	let firstNameVal = firstName.value;
 	let middleNameVal = middleName.value;
