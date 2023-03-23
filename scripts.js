@@ -208,8 +208,8 @@ function userFormSubmitBtnClickEvent () {
 	let userNameVal = userName.value;
 	let firstNameVal = firstName.value;
 	let middleNameVal = middleName.value;
-	let lastNameVal = document.getElementById("txtLastname").value;
-	let mailIDVal = lastName.value;
+	let lastNameVal = lastName.value;
+	let mailIDVal = mailID.value;
 	let selectProjectVal = selectProject.value;
 	let genderVal = "Male";
 	for(let i = 0; i < gender.length; i++) {
