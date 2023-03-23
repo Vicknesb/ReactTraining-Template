@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>React</title>
+    
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="styles.css">
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
+	
+</head>
+<body>
+
+<div class="container-fluid w-100 d-flex align-items-stretch g-0">
+
+		<div class="custoggle container-left bg-dark ">
+		<ul class="list-group bg-dark border-0  c-f-s-14">   
+
+			<a href="#" class="list-group-item border-top-0 border-start-0 border-end-0 border-bottom list-group-item-action text-white bg-dark">
+                <div class="justify-content-start align-items-center">
+					<img class="logo-img" alt="React Icon" src="react-icon.png"  /> 
+					<span class="ms-2 col-sm-0 menu-collapsed"> REACT DEMO </span>	 
+                </div>
+            </a>	
+			<a href="#" class="list-group-item border-0 mt-3 list-group-item-action text-white-50 bg-dark">
+                <div class="d-flex align-items-baseline">
+                    <i class="bi bi-bank align-middle"></i>
+                    <span class="ms-2 menu-collapsed">DASHBOARD</span>
+                </div>
+            </a>           
+            <a href="#" id="user-menu" class="list-group-item border-0 mt-3 list-group-item-action menu-active text-white-50 bg-dark">
+                <div class="d-flex align-items-baseline">
+                    <i class="bi bi-people align-middle"></i>
+                    <span class="ms-2 menu-collapsed">USERS</span>
+                </div>
+            </a>
+			<a href="#" class="list-group-item border-0 mt-3 list-group-item-action text-white-50 bg-dark">
+                <div class="d-flex align-items-baseline">
+                    <i class="bi bi-bar-chart-line align-middle"></i>
+                    <span class="ms-2 menu-collapsed">PROJECTS</span>
+                </div>
+            </a>
+			<a href="#" class="list-group-item border-0 mt-3 list-group-item-action text-white-50 bg-dark">
+                <div class="d-flex align-items-baseline">
+                    <i class="bi bi-bell align-middle"></i>
+                    <span class="ms-2 menu-collapsed">Notifications</span>					
+                </div>
+            </a>
+            <a href="#" class="list-group-item border-0 mt-3 list-group-item-action text-white-50 bg-dark">
+                <div class="d-flex align-items-baseline">
+                    <i class="bi bi-gear align-middle"></i>
+                    <span class="ms-2 menu-collapsed">Admin</span>
+                </div>
+            </a>
+           
+        </ul>
+		</div>
+		<div class="container-right main-c-bg">
+			<div class="row c-h-100 g-0">
+				<div class="c-h-5 g-0 border-bottom row pb-2 pt-1 ps-4 pe-4">					
+					<div class="col-12 col-sm-4 col-md-5 col-lg-8 text-black-50 fs-5 align-self-center">
+						<span id="collapse-bar" class="c-cursor-pointer" data-toggle="sidebar-colapse" ><i class="fa fa-bars"></i></span>
+						<span class="ms-2 menu-title"></span>
+					</div>	
+					<div class="col-12 col-sm-4 col-md-5 col-lg-2 align-self-center">
+						<div class="input-group input-group-sm w-100 text-end">
+							<input class=" form-control rounded border c-t-placeholder-c c-bg-search " type="search" 
+							placeholder="Search..." id="example-search-input">
+							<span class="input-group-append text-center">
+								<button class="btn btn-outline-secondary border-0 p-0 ms-n35 text-black-50 c-bg-search" type="button">
+									<i class="bi bi-search c-bg-search"></i> 
+								</button>
+							</span>				
+						</div>
+					</div>					
+					<div class="col-12 col-sm-4 col-md-2 col-lg-2 row d-flex g-0 pb-1 text-center align-self-center">
+							<div class="col-sm-12 row align-self-center g-0">
+								<div class="col-4 col-lg-3 col-md-4 col-sm-4 text-center pt-1 ps-3"><i class="bi bi-grid-1x2"></i></div>
+								<div class="col-4 col-lg-6 col-md-4 col-sm-4 text-center pt-1 ps-1">
+								<i class="bi bi-bell" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"></i>
+								  <button class="border-0 dropdown-toggle bg-transparent g-0 p-0 text-start m-0" 
+								  type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"></button>
+								  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+									<li><button class="dropdown-item" type="button">Sample Notification 1</button></li>
+									<li><button class="dropdown-item" type="button">Sample Notification 2</button></li>
+									<li><button class="dropdown-item" type="button">Sample Notification 3</button></li>
+								  </ul>
+								</div>
+								<div class="col-4 col-lg-3 col-md-4 col-sm-4 text-center pt-1 pe-2"><i class="bi bi-gear"></i></div>
+							</div>
+					</div>
+				</div>
+				
+				<div class="content-user-list c-d-block c-h-85 mt-4 g-0 ps-4 pe-4">					
+					<div class="row g-0 rounded-3 bg-light shadow p-3">
+					<form> 
+					<div class="row col-12 ps-3 ">
+						<div class="form-group col-sm-12 col-md-2 col-lg-3 g-0 pe-1">	
+							<label for="txtUserNameFilter" class="col-form-label-sm c-text-color-bfbfbf c-f-s-12">Username</label>
+							<input type="text" class="form-control form-control-sm c-t-placeholder-c  c-f-s-12 " id="txtUserNameFilter" 
+							aria-describedby="usernameHelp" placeholder="Enter Username">
+						</div>
+						
+						<div class="form-group col-sm-12 col-md-2 col-lg-2 g-0 pe-1">	
+							<label for="txtEmailFilter" class="col-form-label-sm c-text-color-bfbfbf c-f-s-12">Email address</label>
+							<input type="text" class="form-control form-control-sm c-t-placeholder-c c-f-s-12 " 
+							id="txtEmailFilter" aria-describedby="emailHelp" placeholder="Enter Email address">
+						</div>
+						
+						<div class="form-group col-sm-12 col-md-3 col-lg-3 g-0 pe-1">
+							<label for="selProject" class="col-form-label-sm c-text-color-bfbfbf c-f-s-12">Project</label>
+							<select id="selectProjectFilter" class="form-select form-select-sm c-f-s-12 c-f-select">
+								 <option value="" Disabled selected>Select a Project</option>
+							</select>            
+						</div>
+						<div class="form-group col-sm-12 col-md-5 col-lg-4 row g-0 ps-2">
+							<button type="button" id="btnSearchFilter" class="c-btn m-1 me-2 mt-sm-1 mb-sm-1 mt-md-4 mb-md-4 mt-lg-4 mb-lg-2 col-sm-12 col-md-3 col-lg-3 btn btn-sm rounded-pill c-bg-theme text-light">Search</button> 
+							<button type="button" id="btnSearchClear" class="c-btn m-1 me-2 mt-sm-1 mb-sm-1 mt-md-4 mb-md-4 mt-lg-4 mb-lg-2 col-sm-12 col-md-3 col-lg-3 btn btn-sm rounded-pill c-bg-theme text-light">Clear</button> 
+							<button type="button" id="btnCreateUser" class="c-btn m-1 me-2 mt-sm-1 mb-sm-1 mt-md-4 mb-md-4 mt-lg-4 mb-lg-2 col-sm-12 col-md-3 col-lg-3 btn btn-sm rounded-pill c-bg-theme text-light">Create</button>
+						</div>
+					</div>
+					</form>
+					</div>
+										
+					<div class="mt-3 rounded-3 bg-light shadow p-3 ps-4 pe-4">
+					<span class="text-black-50 fs-5">User Details</span>
+					<div class="row table-responsive-sm table-responsive-md table-responsive-lg g-0  border-top mt-3 ">
+						<table id="tblUserList" class="table border-top c-f-s-14">
+						  <thead>
+							<tr class="c-theme c-text-theme">
+							  <th scope="col">Username</th>
+							  <th scope="col">First Name</th>
+							  <th scope="col">Last Name</th>
+							  <th scope="col">Mail Address</th>
+							  <th scope="col">Project</th>
+							</tr>
+						  </thead>
+						  <tbody></tbody>
+						</table>
+					</div>
+					</div>
+					
+				</div>
+				
+				<div class="content-user-create c-d-none c-h-85 g-0 ps-4 pe-4">				
+					<div class="mt-3 rounded-3 bg-light shadow p-3 ps-4 pe-4">
+					<div class="text-end"><button id="btnUserFormClose" type="button" class="btn-close" aria-label="Close"></button></div>
+					<form>
+					<div class="col-12">
+						<div class="row col-12 form-group p-2 g-0">				
+							<div class="form-group col-sm-12 col-md-6 col-lg-6 g-0 pe-1">	
+								<label for="txtUsername" class="col-form-label-sm c-text-color-bfbfbf c-f-s-12">Username</label>
+								<input id="txtUsername" class="w-75 form-control form-control-sm" type="text" placeholder="Username" aria-label="Username">
+							</div>
+							<div class="form-group col-sm-12 col-md-6 col-lg-6 g-0 pe-1">	
+								<label for="txtFirstname" class="col-form-label-sm c-text-color-bfbfbf c-f-s-12">First Name</label>
+								<input id="txtFirstname" class="w-75 form-control form-control-sm" type="text" placeholder="First Name" aria-label="First Name">
+							</div>							
+						</div>
+						
+						<div class="row col-12 form-group p-2 g-0">	
+							<div class="form-group col-sm-12 col-md-6 col-lg-6 g-0 pe-1">	
+								<label for="txtMiddletname" class="col-form-label-sm c-text-color-bfbfbf c-f-s-12">Middle Name</label>
+								<input id="txtMiddletname" class="w-75 form-control form-control-sm m-1 " type="text" placeholder="Middle Name" aria-label="middle Name">
+							</div>
+							<div class="form-group col-sm-12 col-md-6 col-lg-6 g-0 pe-1">	
+								<label for="txtLastname" class="col-form-label-sm c-text-color-bfbfbf c-f-s-12">Last Name</label>
+								<input id="txtLastname" class="w-75 form-control form-control-sm m-1 " type="text" placeholder="Last Name" aria-label="Last Name">
+							</div>
+						</div>	
+						
+						<div class="row col-12 form-group p-2 g-0">	
+							<div class="form-group col-sm-12 col-md-6 col-lg-6 g-0 pe-1">	
+								<label for="txtMailid" class="col-form-label-sm c-text-color-bfbfbf c-f-s-12">Email ID</label>
+								<input id="txtMailid" class="w-75 form-control form-control-sm m-1 " type="text" placeholder="Email ID" aria-label="Email ID">
+							</div>
+							<div class="form-group col-sm-12 col-md-6 col-lg-6 g-0 pe-1">	
+								<label for="selectProject" class="col-form-label-sm c-text-color-bfbfbf c-f-s-12">Project</label>
+								<select id="selectProject" class="w-75 form-select form-select-sm m-1 " aria-label="Projects">
+								  <option value="" selected>Select Project</option>
+								</select>
+							</div>
+						</div>	
+						
+						<div class="row col-12 form-group p-2 g-0">	
+							<div class="row col-6">
+								<div class="col-4">
+								  <input class="form-check-input" type="radio" name="genderRadioBtn" value="Male" id="btnMaleRadio" checked/>
+								  <label class="form-check-label" for="btnMaleRadio"> Male </label>
+								</div>
+								<div class="col-4">
+								  <input class="form-check-input" type="radio" name="genderRadioBtn" value="Female" id="btnFemaleRadio"/>
+								  <label class="form-check-label" for="btnFemaleRadio"> Female </label>
+								</div>
+							</div>						
+							<div class="col-sm-6 col-md-6 col-lg-6 form-check form-switch">
+							  <input class="form-check-input" type="checkbox" id="switchIsactive">
+							  <label class="form-check-label" for="flexSwitchCheckDefault">Is Active</label>
+							</div>
+						</div>
+						
+						<div class="row text-end col-sm-12 col-md-12 col-lg-12 btn btn-sm border-0 p-2">
+							<button type="button" id="btnReset" class="col-sm-2 col-md-2 col-lg-2 btn btn-sm bg-info text-light rounded-pill ps-3 pe-3 m-1">Reset</button>
+							<button type="button" id="btnUserNewSubmit" class="col-sm-2 col-md-2 col-lg-2 btn btn-sm bg-success text-light rounded-pill ps-3 pe-3 m-1">Submit</button>
+						</div>
+						
+					</div>
+					</form>
+					</div>
+				</div>
+				
+			</div>					
+		</div>
+	
+</div>
+
+</body>
+
+<script>
+
+var tableData = [
+  { uName: "tvoltas", fName: "Tata", lName: "Voltas", mail: "tvoltas@mail.com", project: "Air Conditioner" },
+  { uName: "iphone", fName: "Apple", lName: "phone", mail: "iphone@mail.com", project: "Mobile" },
+  { uName: "oplus", fName: "One", lName: "Plus", mail: "oplus@mail.com", project: "Television" },
+  { uName: "tvoltas", fName: "Tata", lName: "Voltas", mail: "tvoltas@mail.com", project: "Air Conditioner" },
+  { uName: "iphone", fName: "Apple", lName: "phone", mail: "iphone@mail.com", project: "Mobile" },
+  { uName: "oplus", fName: "One", lName: "Plus", mail: "oplus@mail.com", project: "Television" }
+];
+
+var tableDataCopy = [];
+
+var selectedFilterOptions = 
+{
+   uName: null,
+   mail: null,
+   project: null
+}
+
+var projects = ["Air Conditioner", "Mobile", "Television", "Laptop"];
+
+var tempFilterTableData = [];
+
+const menuTitle = document.querySelector('.menu-title');
+
+const myUsrTable = document.querySelector('#tblUserList');
+const collapseBar = document.querySelector("#collapse-bar");
+const userMenu = document.querySelector("#user-menu");
+const userSearchFilter = document.querySelector("#btnSearchFilter");
+const btnCreateUser = document.querySelector("#btnCreateUser");
+const userFormSubmitBtn = document.querySelector("#btnUserNewSubmit");
+const userFormReset = document.querySelector("#btnReset");
+const btnSearchClear = document.querySelector("#btnSearchClear");
+const btnUserFormClose = document.querySelector("#btnUserFormClose");
+
+const userName = document.querySelector("#txtUsername");
+const firstName = document.querySelector("#txtFirstname");
+const middleName = document.querySelector("#txtMiddletname");
+const lastName = document.querySelector("#txtLastname");
+const mailID = document.querySelector("#txtMailid");
+const selectProject = document.querySelector("#selectProject");
+const gender = document.getElementsByName("genderRadioBtn");
+
+(function () {
+ 
+function Init(){		
+	showUserList();
+	loadProjectsDropdown('selectProjectFilter');
+	loadProjectsDropdown('selectProject');
+}
+
+Init();
+
+collapseBar.addEventListener("click", collapseBarClickEvent);
+userMenu.addEventListener("click", userMenuClickEvent);
+userSearchFilter.addEventListener("click", userSearchFilterEvent);
+btnCreateUser.addEventListener("click", btnCreateUserClickEvent);
+userFormSubmitBtn.addEventListener("click", userFormSubmitBtnClickEvent);
+userFormReset.addEventListener("click", userFormResetEvent);
+btnSearchClear.addEventListener("click", btnSearchClearEvent);
+btnUserFormClose.addEventListener("click", btnUserFormCloseEvent);
+
+})();
+
+function generateTable(table, data) {
+  for (let element of data) {
+    let row = table.insertRow();
+    for (key in element) {
+      let cell = row.insertCell();
+      let text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    }
+  }
+}
+
+function loadUserTableData(){	
+	
+	let rows =  document.querySelectorAll("#tblUserList thead tr");
+	for (var i = rows.length - 1 ; i > 0 ; i--) {
+            myUsrTable.deleteRow(i);
+        }
+	generateTable(myUsrTable, tableData);  
+}
+
+function showUserList () {
+	tableDataCopy = tableData;
+	var userList = document.querySelector('.content-user-list');	
+	var userCreate = document.querySelector('.content-user-create');	
+	userList.classList.add('c-d-block');
+	userCreate.classList.add('c-d-none');	
+	userList.classList.remove('c-d-none');
+	userCreate.classList.remove('c-d-block');
+	menuTitle.innerHTML = "Users List";	
+	loadUserTableData();	
+}
+
+function showUserCreate () {
+	resetUserForm();
+	var userList = document.querySelector('.content-user-list');	
+	var userCreate = document.querySelector('.content-user-create');	
+	userList.classList.remove('c-d-block');
+	userCreate.classList.remove('c-d-none');	
+	userList.classList.add('c-d-none');
+	userCreate.classList.add('c-d-block');
+	menuTitle.innerHTML = "Users Create";
+}
+	
+function loadProjectsDropdown(element){
+var projetSelect = document.querySelector(`#${element}`);  
+	for (let item of projects) {
+	  var option = document.createElement("option");
+		 option.text = item;
+		 option.value = item;
+	  projetSelect.add(option);
+	}
+}
+
+function userSearchFilterEvent(uname, email, project){
+tempFilterTableData = [];
+
+let unameFilter = document.querySelector("#txtUserNameFilter");
+let emailFilter = document.querySelector("#txtEmailFilter");
+let projectFilter = document.querySelector("#selectProjectFilter");
+
+const selectedFilters = 
+{
+   uName: unameFilter.value,
+   mail: emailFilter.value,
+   project: projectFilter.value
+}
+
+if(selectedFilters.uName || selectedFilters.mail || selectedFilters.project)
+{
+	tableData = FilterSearchItem(selectedFilters);	
+	loadUserTableData();
+}
+
+}
+
+function FilterSearchItem(selectedFilters)
+{
+for(let row of tableDataCopy){
+
+var addRow = false;
+for (var rowKey in row) {
+var abortLoop = false;
+
+	for (var filterKey in selectedFilters) {
+	
+		if (rowKey === filterKey) {
+			if (row[rowKey] && selectedFilters[filterKey]) {
+				if(row[rowKey].includes(selectedFilters[filterKey]))
+					addRow = true;
+				else{
+					addRow = false;
+					abortLoop = true;
+					break;
+				}
+			}
+		}
+	}
+	 if (abortLoop) break;
+}
+if(addRow){
+		tempFilterTableData.push(row);
+	}
+}
+return tempFilterTableData;
+}
+
+function resetUserForm(){
+	document.querySelector("#txtUsername").value = "";
+	document.querySelector("#txtFirstname").value = "";
+	document.querySelector("#txtMiddletname").value = "";
+	document.querySelector("#txtLastname").value = "";
+	document.querySelector("#txtMailid").value = "";
+	document.querySelector("#selectProject").value = "";
+	document.querySelector('#btnMaleRadio').checked = true;	
+	document.querySelector('#switchIsactive').checked = false;	
+}
+
+function collapseBarClickEvent () {
+	var collapseMenu = document.querySelectorAll('.menu-collapsed');	
+	var containerLeft = document.querySelector('.container-left');
+	for (let menu of collapseMenu) {
+	  menu.classList.toggle('c-d-none');
+	}
+	containerLeft.classList.toggle('custoggle');
+}
+
+function userMenuClickEvent () {
+	showUserList();
+}
+
+function btnCreateUserClickEvent(){	
+	btnSearchClearEvent();
+	showUserCreate();
+}
+
+function btnSearchClearEvent()
+{	
+	document.querySelector("#txtUserNameFilter").value = "";
+	document.querySelector("#txtEmailFilter").value = "";
+	document.querySelector("#selectProjectFilter").value = "";
+	tableData = tableDataCopy;
+	loadUserTableData();	
+}
+
+function btnUserFormCloseEvent(){	
+	showUserList();
+}
+
+function userFormSubmitBtnClickEvent () {
+
+	let userNameVal = userName.value;
+	let firstNameVal = firstName.value;
+	let middleNameVal = middleName.value;
+	let lastNameVal = document.getElementById("txtLastname").value;
+	let mailIDVal = lastName.value;
+	let selectProjectVal = selectProject.value;
+	let genderVal = "Male";
+	for(let i = 0; i < gender.length; i++) {
+            if(gender[i].checked)
+            genderVal = gender[i].value;
+        }
+	let switchIsactive = document.querySelector('#switchIsactive').checked;	
+		
+	const User = {
+         uName: userNameVal,
+         fName : firstNameVal,
+         mName : middleNameVal,
+         lName : lastNameVal,
+		 mail : mailIDVal,
+		 project : selectProjectVal,
+         gender: genderVal,
+		 isactive: switchIsactive
+    };	  
+	if( userNameVal != '' || firstNameVal != '' || lastNameVal != '' || mailIDVal != '' || selectProjectVal != '')
+	{
+		sessionStorage.setItem("User", JSON.stringify(User));
+		var GetUserData = JSON.parse(sessionStorage.User);
+
+		let userObj = { uName: GetUserData.uName, fName: GetUserData.fName, lName: GetUserData.lName, 
+		mail: GetUserData.mail, project: GetUserData.project };
+		tableData.unshift(userObj);
+		showUserList();
+	}
+}
+
+function userFormResetEvent () {
+	resetUserForm();
+}
+
+</script>
+
+</html>
