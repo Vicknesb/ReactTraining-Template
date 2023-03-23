@@ -1,4 +1,5 @@
-
+(function () {
+	
 var tableData = [
   { uName: "tvoltas", fName: "Tata", lName: "Voltas", mail: "tvoltas@mail.com", project: "Air Conditioner" },
   { uName: "iphone", fName: "Apple", lName: "phone", mail: "iphone@mail.com", project: "Mobile" },
@@ -9,18 +10,14 @@ var tableData = [
 ];
 
 var tableDataCopy = [];
-
+var tempFilterTableData = [];
+var projects = ["Air Conditioner", "Mobile", "Television", "Laptop"];
 var selectedFilterOptions = 
 {
    uName: null,
    mail: null,
    project: null
 }
-
-var projects = ["Air Conditioner", "Mobile", "Television", "Laptop"];
-
-var tempFilterTableData = [];
-
 const menuTitle = document.querySelector('.menu-title');
 
 const myUsrTable = document.querySelector('#tblUserList');
@@ -32,16 +29,6 @@ const userFormSubmitBtn = document.querySelector("#btnUserNewSubmit");
 const userFormReset = document.querySelector("#btnReset");
 const btnSearchClear = document.querySelector("#btnSearchClear");
 const btnUserFormClose = document.querySelector("#btnUserFormClose");
-
-const userName = document.querySelector("#txtUsername");
-const firstName = document.querySelector("#txtFirstname");
-const middleName = document.querySelector("#txtMiddletname");
-const lastName = document.querySelector("#txtLastname");
-const mailID = document.querySelector("#txtMailid");
-const selectProject = document.querySelector("#selectProject");
-const gender = document.getElementsByName("genderRadioBtn");
-
-(function () {
  
 function Init(){		
 	showUserList();
@@ -59,8 +46,6 @@ userFormSubmitBtn.addEventListener("click", userFormSubmitBtnClickEvent);
 userFormReset.addEventListener("click", userFormResetEvent);
 btnSearchClear.addEventListener("click", btnSearchClearEvent);
 btnUserFormClose.addEventListener("click", btnUserFormCloseEvent);
-
-})();
 
 function generateTable(table, data) {
   for (let element of data) {
@@ -116,53 +101,49 @@ var projetSelect = document.querySelector(`#${element}`);
 }
 
 function userSearchFilterEvent(uname, email, project){
-tempFilterTableData = [];
+	tempFilterTableData = [];
 
-let unameFilter = document.querySelector("#txtUserNameFilter");
-let emailFilter = document.querySelector("#txtEmailFilter");
-let projectFilter = document.querySelector("#selectProjectFilter");
+	let unameFilter = document.querySelector("#txtUserNameFilter");
+	let emailFilter = document.querySelector("#txtEmailFilter");
+	let projectFilter = document.querySelector("#selectProjectFilter");
 
-const selectedFilters = 
-{
-   uName: unameFilter.value,
-   mail: emailFilter.value,
-   project: projectFilter.value
-}
+	const selectedFilters = 
+	{
+	   uName: unameFilter.value,
+	   mail: emailFilter.value,
+	   project: projectFilter.value
+	}
 
-if(selectedFilters.uName || selectedFilters.mail || selectedFilters.project)
-{
-	tableData = FilterSearchItem(selectedFilters);	
-	loadUserTableData();
-}
-
+	if(selectedFilters.uName || selectedFilters.mail || selectedFilters.project)
+	{
+		tableData = FilterSearchItem(selectedFilters);	
+		loadUserTableData();
+	}
 }
 
 function FilterSearchItem(selectedFilters)
 {
 for(let row of tableDataCopy){
-
-var addRow = false;
-for (var rowKey in row) {
-var abortLoop = false;
-
-	for (var filterKey in selectedFilters) {
-	
-		if (rowKey === filterKey) {
-			if (row[rowKey] && selectedFilters[filterKey]) {
-				if(row[rowKey].includes(selectedFilters[filterKey]))
-					addRow = true;
-				else{
-					addRow = false;
-					abortLoop = true;
-					break;
+	var addRow = false;
+	for (var rowKey in row) {
+		var abortLoop = false;
+		for (var filterKey in selectedFilters) {		
+			if (rowKey === filterKey) {
+				if (row[rowKey] && selectedFilters[filterKey]) {
+					if(row[rowKey].includes(selectedFilters[filterKey]))
+						addRow = true;
+					else{
+						addRow = false;
+						abortLoop = true;
+						break;
+					}
 				}
 			}
 		}
+		 if (abortLoop) break;
 	}
-	 if (abortLoop) break;
-}
-if(addRow){
-		tempFilterTableData.push(row);
+	if(addRow){
+			tempFilterTableData.push(row);
 	}
 }
 return tempFilterTableData;
@@ -210,7 +191,19 @@ function btnUserFormCloseEvent(){
 	showUserList();
 }
 
+function userFormResetEvent () {
+	resetUserForm();
+}
+
 function userFormSubmitBtnClickEvent () {
+	
+	const userName = document.querySelector("#txtUsername");
+	const firstName = document.querySelector("#txtFirstname");
+	const middleName = document.querySelector("#txtMiddletname");
+	const lastName = document.querySelector("#txtLastname");
+	const mailID = document.querySelector("#txtMailid");
+	const selectProject = document.querySelector("#selectProject");
+	const gender = document.getElementsByName("genderRadioBtn");
 
 	let userNameVal = userName.value;
 	let firstNameVal = firstName.value;
@@ -247,6 +240,4 @@ function userFormSubmitBtnClickEvent () {
 	}
 }
 
-function userFormResetEvent () {
-	resetUserForm();
-}
+})();
