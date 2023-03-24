@@ -10,7 +10,6 @@ var tableData = [
 ];
 
 var tableDataCopy = [];
-var tempFilterTableData = [];
 var projects = ["Air Conditioner", "Mobile", "Television", "Laptop"];
 var selectedFilterOptions = 
 {
@@ -112,7 +111,6 @@ var projetSelect = document.querySelector(`#${element}`);
 }
 
 function userSearchFilterEvent(uname, email, project){
-	tempFilterTableData = [];
 
 	const selectedFilters = 
 	{
@@ -126,6 +124,8 @@ function userSearchFilterEvent(uname, email, project){
 		tableData = tableDataCopy.filter(row => FilterSearchItem(selectedFilters,row) );
 		loadUserTableData();
 	}
+	else
+		btnSearchClearEvent();		
 }
 
 function FilterSearchItem(selectedFilters, row)
@@ -140,9 +140,6 @@ function FilterSearchItem(selectedFilters, row)
 				break;
 			}
 		}
-	}
-	if(addRow){
-		tempFilterTableData.push(row);
 	}
 	return addRow;
 }
