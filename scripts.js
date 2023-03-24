@@ -71,7 +71,6 @@ function generateTable(table, data) {
 }
 
 function loadUserTableData(){	
-	
 	let rows =  document.querySelectorAll("#tblUserList thead tr");
 	for (var i = rows.length - 1 ; i > 0 ; i--) {
             myUsrTable.deleteRow(i);
@@ -124,37 +123,28 @@ function userSearchFilterEvent(uname, email, project){
 
 	if(selectedFilters.uName || selectedFilters.mail || selectedFilters.project)
 	{
-		tableData = FilterSearchItem(selectedFilters);	
+		tableData = tableDataCopy.filter(row => FilterSearchItem(selectedFilters,row) );
 		loadUserTableData();
 	}
 }
 
-function FilterSearchItem(selectedFilters)
+function FilterSearchItem(selectedFilters, row)
 {
-for(let row of tableDataCopy){
-	var addRow = false;
-	for (var rowKey in row) {
-		var abortLoop = false;
-		for (var filterKey in selectedFilters) {		
-			if (rowKey === filterKey) {
-				if (row[rowKey] && selectedFilters[filterKey]) {
-					if(row[rowKey].includes(selectedFilters[filterKey]))
-						addRow = true;
-					else{
-						addRow = false;
-						abortLoop = true;
-						break;
-					}
-				}
+	let addRow = false;
+	for (let filterkey in selectedFilters) {		
+		if (row[filterkey] && selectedFilters[filterkey]) {
+			if(row[filterkey].includes(selectedFilters[filterkey]))
+				addRow = true;
+			else{
+				addRow = false;
+				break;
 			}
 		}
-		 if (abortLoop) break;
 	}
 	if(addRow){
-			tempFilterTableData.push(row);
+		tempFilterTableData.push(row);
 	}
-}
-return tempFilterTableData;
+	return addRow;
 }
 
 function resetUserForm(){
