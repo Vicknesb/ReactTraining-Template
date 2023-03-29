@@ -10,53 +10,49 @@ var tableData = [
 ];
 
 var tableDataCopy = [];
-var projects = ["Air Conditioner", "Mobile", "Television", "Laptop"];
-var selectedFilterOptions = 
-{
-   uName: null,
-   mail: null,
-   project: null
-}
-const menuTitle = document.querySelector('.menu-title');
+const menuTitle = document.getElementsByClassName('menu-title');
 
-const myUsrTable = document.querySelector('#tblUserList');
-const collapseBar = document.querySelector("#collapse-bar");
-const userMenu = document.querySelector("#user-menu");
-const userSearchFilter = document.querySelector("#btnSearchFilter");
-const btnCreateUser = document.querySelector("#btnCreateUser");
-const userFormSubmitBtn = document.querySelector("#btnUserNewSubmit");
-const userFormReset = document.querySelector("#btnReset");
-const btnSearchClear = document.querySelector("#btnSearchClear");
-const btnUserFormClose = document.querySelector("#btnUserFormClose");
+const userMenu = document.getElementById("user-menu");
+const userSearchFilter = document.getElementById("btnSearchFilter");
+const userCreate = document.getElementById("btnCreateUser");
+const userFormSubmit = document.getElementById("btnUserNewSubmit");
+const userFormReset = document.getElementById("btnReset");
+const btnSearchClear = document.getElementById("btnSearchClear");
+const btnUserFormClose = document.getElementById("btnUserFormClose");
 
-const userName = document.querySelector("#txtUsername");
-const firstName = document.querySelector("#txtFirstname");
-const middleName = document.querySelector("#txtMiddletname");
-const lastName = document.querySelector("#txtLastname");
-const mailID = document.querySelector("#txtMailid");
-const selectProject = document.querySelector("#selectProject");
+const userName = document.getElementById("txtUsername");
+const firstName = document.getElementById("txtFirstname");
+const middleName = document.getElementById("txtMiddletname");
+const lastName = document.getElementById("txtLastname");
+const mailID = document.getElementById("txtMailid");
+const selectProject = document.getElementById("selectProject");
 const gender = document.getElementsByName("genderRadioBtn");
 
-const unameFilter = document.querySelector("#txtUserNameFilter");
-const emailFilter = document.querySelector("#txtEmailFilter");
-const projectFilter = document.querySelector("#selectProjectFilter");
+const unameFilter = document.getElementById("txtUserNameFilter");
+const emailFilter = document.getElementById("txtEmailFilter");
+const projectFilter = document.getElementById("selectProjectFilter");
  
-function Init(){		
+function init(){		
 	showUserList();
 	loadProjectsDropdown('selectProjectFilter');
 	loadProjectsDropdown('selectProject');
+	eventListeners();
 }
 
-Init();
+init();
 
-collapseBar.addEventListener("click", collapseBarClickEvent);
-userMenu.addEventListener("click", userMenuClickEvent);
-userSearchFilter.addEventListener("click", userSearchFilterEvent);
-btnCreateUser.addEventListener("click", btnCreateUserClickEvent);
-userFormSubmitBtn.addEventListener("click", userFormSubmitBtnClickEvent);
-userFormReset.addEventListener("click", userFormResetEvent);
-btnSearchClear.addEventListener("click", btnSearchClearEvent);
-btnUserFormClose.addEventListener("click", btnUserFormCloseEvent);
+function eventListeners(){
+	const collapseBar = document.getElementById("collapse-bar");
+	collapseBar.addEventListener("click", collapseBarEventHandler);
+	
+	userMenu.addEventListener("click", userMenuEventHandler);
+	userSearchFilter.addEventListener("click", userSearchFilterEventHandler);
+	userCreate.addEventListener("click", createUserEventHandler);
+	userFormSubmit.addEventListener("click", userFormSubmitEventHandler);
+	userFormReset.addEventListener("click", userFormResetEventHandler);
+	btnSearchClear.addEventListener("click", searchClearEventHandler);
+	btnUserFormClose.addEventListener("click", userFormCloseEventHandler);
+}
 
 function generateTable(table, data) {
   for (let element of data) {
@@ -70,6 +66,7 @@ function generateTable(table, data) {
 }
 
 function loadUserTableData(){	
+	const myUsrTable = document.getElementById('tblUserList');
 	let rows =  document.querySelectorAll("#tblUserList thead tr");
 	for (var i = rows.length - 1 ; i > 0 ; i--) {
             myUsrTable.deleteRow(i);
@@ -79,28 +76,29 @@ function loadUserTableData(){
 
 function showUserList () {
 	tableDataCopy = tableData;
-	var userList = document.querySelector('.content-user-list');	
-	var userCreate = document.querySelector('.content-user-create');	
-	userList.classList.add('c-d-block');
-	userCreate.classList.add('c-d-none');	
-	userList.classList.remove('c-d-none');
-	userCreate.classList.remove('c-d-block');
+	let userListContainer = document.querySelector('.content-user-list');	
+	let userCreateContainer = document.querySelector('.content-user-create');	
+	userListContainer.classList.add('c-d-block');
+	userCreateContainer.classList.add('c-d-none');	
+	userListContainer.classList.remove('c-d-none');
+	userCreateContainer.classList.remove('c-d-block');
 	menuTitle.innerHTML = "Users List";	
 	loadUserTableData();	
 }
 
 function showUserCreate () {
 	resetUserForm();
-	var userList = document.querySelector('.content-user-list');	
-	var userCreate = document.querySelector('.content-user-create');	
-	userList.classList.remove('c-d-block');
-	userCreate.classList.remove('c-d-none');	
-	userList.classList.add('c-d-none');
-	userCreate.classList.add('c-d-block');
+	let userListContainer = document.querySelector('.content-user-list');	
+	let userCreateContainer = document.querySelector('.content-user-create');	
+	userListContainer.classList.remove('c-d-block');
+	userCreateContainer.classList.remove('c-d-none');	
+	userListContainer.classList.add('c-d-none');
+	userCreateContainer.classList.add('c-d-block');
 	menuTitle.innerHTML = "Users Create";
 }
 	
 function loadProjectsDropdown(element){
+var projects = ["Air Conditioner", "Mobile", "Television", "Laptop"];
 var projetSelect = document.querySelector(`#${element}`);  
 	for (let item of projects) {
 	  var option = document.createElement("option");
@@ -110,7 +108,7 @@ var projetSelect = document.querySelector(`#${element}`);
 	}
 }
 
-function userSearchFilterEvent(uname, email, project){
+function userSearchFilterEventHandler(uname, email, project){
 
 	const selectedFilters = 
 	{
@@ -121,14 +119,14 @@ function userSearchFilterEvent(uname, email, project){
 
 	if(selectedFilters.uName || selectedFilters.mail || selectedFilters.project)
 	{
-		tableData = tableDataCopy.filter(row => FilterSearchItem(selectedFilters,row) );
+		tableData = tableDataCopy.filter(row => filterSearchItem(selectedFilters,row) );
 		loadUserTableData();
 	}
 	else
-		btnSearchClearEvent();		
+		searchClearEventHandler();		
 }
 
-function FilterSearchItem(selectedFilters, row)
+function filterSearchItem(selectedFilters, row)
 {
 	let addRow = false;
 	for (let filterkey in selectedFilters) {		
@@ -151,11 +149,11 @@ function resetUserForm(){
 	lastName.value = "";
 	mailID.value = "";
 	selectProject.value = "";
-	document.querySelector('#btnMaleRadio').checked = true;	
-	document.querySelector('#switchIsactive').checked = false;	
+	document.getElementById('btnMaleRadio').checked = true;	
+	document.getElementById('switchIsactive').checked = false;	
 }
 
-function collapseBarClickEvent () {
+function collapseBarEventHandler () {
 	var collapseMenu = document.querySelectorAll('.menu-collapsed');	
 	var containerLeft = document.querySelector('.container-left');
 	for (let menu of collapseMenu) {
@@ -164,16 +162,16 @@ function collapseBarClickEvent () {
 	containerLeft.classList.toggle('custoggle');
 }
 
-function userMenuClickEvent () {
+function userMenuEventHandler () {
 	showUserList();
 }
 
-function btnCreateUserClickEvent(){	
-	btnSearchClearEvent();
+function createUserEventHandler(){	
+	searchClearEventHandler();
 	showUserCreate();
 }
 
-function btnSearchClearEvent()
+function searchClearEventHandler()
 {	
 	unameFilter.value = "";
 	emailFilter.value = "";
@@ -182,15 +180,15 @@ function btnSearchClearEvent()
 	loadUserTableData();	
 }
 
-function btnUserFormCloseEvent(){	
+function userFormCloseEventHandler (){	
 	showUserList();
 }
 
-function userFormResetEvent () {
+function userFormResetEventHandler () {
 	resetUserForm();
 }
 
-function userFormSubmitBtnClickEvent () {
+function userFormSubmitEventHandler () {
 	
 	let userNameVal = userName.value;
 	let firstNameVal = firstName.value;
@@ -203,7 +201,7 @@ function userFormSubmitBtnClickEvent () {
             if(gender[i].checked)
             genderVal = gender[i].value;
         }
-	let switchIsactive = document.querySelector('#switchIsactive').checked;	
+	let switchIsactive = document.getElementById('switchIsactive').checked;	
 		
 	const User = {
          uName: userNameVal,
