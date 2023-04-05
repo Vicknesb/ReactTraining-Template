@@ -1,6 +1,6 @@
 (function () {
 	
-var tableData = [
+let tableData = [
   { uName: "tvoltas", fName: "Tata", lName: "Voltas", mail: "tvoltas@mail.com", project: "Air Conditioner" },
   { uName: "iphone", fName: "Apple", lName: "phone", mail: "iphone@mail.com", project: "Mobile" },
   { uName: "oplus", fName: "One", lName: "Plus", mail: "oplus@mail.com", project: "Television" },
@@ -9,7 +9,7 @@ var tableData = [
   { uName: "oplus", fName: "One", lName: "Plus", mail: "oplus@mail.com", project: "Television" }
 ];
 
-var tableDataCopy = [];
+let tableDataCopy = [];
 const menuTitle = document.getElementsByClassName('menu-title');
 
 const userMenu = document.getElementById("user-menu");
@@ -57,7 +57,7 @@ function eventListeners(){
 function generateTable(table, data) {
   for (let element of data) {
     let row = table.insertRow();
-    for (key in element) {
+    for (let key in element) {
       let cell = row.insertCell();
       let text = document.createTextNode(element[key]);
       cell.appendChild(text);
@@ -68,7 +68,7 @@ function generateTable(table, data) {
 function loadUserTableData(){	
 	const myUsrTable = document.getElementById('tblUserList');
 	let rows =  document.querySelectorAll("#tblUserList thead tr");
-	for (var i = rows.length - 1 ; i > 0 ; i--) {
+	for (let i = rows.length - 1 ; i > 0 ; i--) {
             myUsrTable.deleteRow(i);
         }
 	generateTable(myUsrTable, tableData);  
@@ -98,10 +98,10 @@ function showUserCreate () {
 }
 	
 function loadProjectsDropdown(element){
-var projects = ["Air Conditioner", "Mobile", "Television", "Laptop"];
-var projetSelect = document.querySelector(`#${element}`);  
+let projects = ["Air Conditioner", "Mobile", "Television", "Laptop"];
+let projetSelect = document.querySelector(`#${element}`);  
 	for (let item of projects) {
-	  var option = document.createElement("option");
+	  let option = document.createElement("option");
 		 option.text = item;
 		 option.value = item;
 	  projetSelect.add(option);
@@ -154,8 +154,8 @@ function resetUserForm(){
 }
 
 function collapseBarEventHandler () {
-	var collapseMenu = document.querySelectorAll('.menu-collapsed');	
-	var containerLeft = document.querySelector('.container-left');
+	let collapseMenu = document.querySelectorAll('.menu-collapsed');	
+	let containerLeft = document.querySelector('.container-left');
 	for (let menu of collapseMenu) {
 	  menu.classList.toggle('c-d-none');
 	}
@@ -216,7 +216,7 @@ function userFormSubmitEventHandler () {
 	if( userNameVal != '' || firstNameVal != '' || lastNameVal != '' || mailIDVal != '' || selectProjectVal != '')
 	{
 		sessionStorage.setItem("User", JSON.stringify(User));
-		var GetUserData = JSON.parse(sessionStorage.User);
+		let GetUserData = JSON.parse(sessionStorage.User);
 
 		let userObj = { uName: GetUserData.uName, fName: GetUserData.fName, lName: GetUserData.lName, 
 		mail: GetUserData.mail, project: GetUserData.project };
